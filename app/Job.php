@@ -13,15 +13,15 @@ class Job extends Model
         'city',
         'country',
         'type_job_id',
-        'user_id'
+        'user_id',
     ];
 
-    public function TypeJob()
+    public function typeJob()
     {
         return $this->belongsTo(TypeJob::class, 'type_job_id');
     }
 
-    public function Category()
+    public function categories()
     {
         return $this->belongsToMany(Category::class, 'job_categories', 'job_id');
     }

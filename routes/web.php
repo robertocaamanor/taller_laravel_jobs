@@ -26,10 +26,14 @@ Route::get('/hola-mundo', function () {
 
 Auth::routes();
 
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
+    Route::get('/create-job', 'AdminJobController@createJob')->name('createJob');
+    Route::post('/create-job', 'AdminJobController@saveJob')->name('saveJob');
+    Route::get('/my-jobs', 'AdminJobController@myJobs')->name('myJobs');
+    Route::get('/edit-job/{id}', 'AdminJobController@editJob')->name('editJob');
+    Route::put('/edit-job/{id}', 'AdminJobController@updateJob')->name('updateJob');
+    Route::delete('/delete-job/{id}', 'AdminJobController@deleteJob')->name('deleteJob');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/create-job', 'AdminJobController@createJob');
-
-Route::post('/create-job', 'AdminJobController@saveJob')->name('saveJob');
-
-Route::get('/my-jobs', 'AdminJobController@myJobs')->name('myJobs');
