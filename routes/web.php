@@ -16,11 +16,14 @@ Route::get('/', function () {
 });
 
 Route::get('/hola-mundo', function () {
-    $usuarios = [
-        [
-            'nombre' => 'Pepito',
-            'email' => 'pepito@gmail.com'
-        ]
-    ];
-    return response()->json($usuarios);
+    //Eloquent
+    $user = \App\User::all();
+    //Query Builder
+    $user1= \DB::table('users')->get();
+
+    return response()->json($user1);
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
