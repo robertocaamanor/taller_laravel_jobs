@@ -29,3 +29,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/create-job', 'AdminJobController@createJob');
+
+Route::post('/create-job', 'AdminJobController@saveJob')->name('saveJob');
+
+Route::get('/my-jobs', 'AdminJobController@myJobs')->name('myJobs');

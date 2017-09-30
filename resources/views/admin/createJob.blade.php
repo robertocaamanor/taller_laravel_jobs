@@ -6,11 +6,24 @@
             <div class="col-lg-12">
                 <div class="panel">
                     <div class="panel-body">
-                        <form class="form-horizontal">
+                        @if($errors->any())
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            @foreach($errors->all() as $error)
+                             <ul>
+                                 <li>{{$error}}</li>
+                             </ul>
+                            @endforeach
+                        </div>
+                        @endif
+                        <form class="form-horizontal" action="{{ route('saveJob') }}" method="POST">
+                            {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Title</label>
                                 <div class="col-sm-10">
-                                    <input type="title" class="form-control" id="inputEmail3">
+                                    <input type="text" class="form-control" id="inputEmail3" name="title">
                                 </div>
                             </div>
                             <div class="form-group">

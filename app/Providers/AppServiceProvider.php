@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Job;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Job::creating(function ($job) {
+            $job->user_id = Auth::user()->id;
+        });
     }
 
     /**
